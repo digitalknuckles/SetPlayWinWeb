@@ -5,11 +5,15 @@
   "main": "App.js",
   "homepage": "https://setplaywin.com", 
   "scripts": {
-    "start": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "start": "webpack serve --mode development", 
+    "build": "webpack --mode production", 
+    "clean": "rimraf dist", 
+    "lint": "eslint src --fix", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["setplaywin", "FunFart Games", "DigitalKnuckles", "LazerPixel", "React", "Web3"],
+  "keywords": [
+    "setplaywin", "FunFart Games", "DigitalKnuckles", "LazerPixel", "React", "Web3"
+  ],
   "author": "SetPlayWin Team",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +28,10 @@
     "babel-loader": "^9.1.3",        
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.23.0",
-    "@babel/preset-react": "^7.23.0"
+    "@babel/preset-react": "^7.23.0",
+    "rimraf": "^5.0.0", 
+    "eslint": "^8.0.0", 
+    "eslint-plugin-react": "^7.30.1", 
+    "prettier": "^2.5.0"
   }
 }

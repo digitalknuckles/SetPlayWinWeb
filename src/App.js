@@ -26,6 +26,22 @@ const content = {
 export default function App() {
   const [activeTab, setActiveTab] = useState("home");
 
+  // Function to render the appropriate content based on active tab
+  const renderContent = () => {
+    switch (activeTab) {
+      case "home":
+        return <Home content={content.home} />;
+      case "features":
+        return <Features content={content.features} />;
+      case "projects":
+        return <Projects content={content.projects} />;
+      case "roadmap":
+        return <Roadmap content={content.roadmap} />;
+      default:
+        return <Home content={content.home} />;
+    }
+  };
+
   return (
     <Router>
       <header>
@@ -36,25 +52,49 @@ export default function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/" onClick={() => setActiveTab("home")}>Home</Link>
+            <Link
+              to="/"
+              onClick={() => setActiveTab("home")}
+              className={activeTab === "home" ? "active" : ""}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/features" onClick={() => setActiveTab("features")}>Features</Link>
+            <Link
+              to="/features"
+              onClick={() => setActiveTab("features")}
+              className={activeTab === "features" ? "active" : ""}
+            >
+              Features
+            </Link>
           </li>
           <li>
-            <Link to="/projects" onClick={() => setActiveTab("projects")}>Projects</Link>
+            <Link
+              to="/projects"
+              onClick={() => setActiveTab("projects")}
+              className={activeTab === "projects" ? "active" : ""}
+            >
+              Projects
+            </Link>
           </li>
           <li>
-            <Link to="/roadmap" onClick={() => setActiveTab("roadmap")}>Roadmap</Link>
+            <Link
+              to="/roadmap"
+              onClick={() => setActiveTab("roadmap")}
+              className={activeTab === "roadmap" ? "active" : ""}
+            >
+              Roadmap
+            </Link>
           </li>
         </ul>
       </nav>
       <main>
         <Routes>
-          <Route path="/" element={<Home content={content.home} />} />
-          <Route path="/features" element={<Features content={content.features} />} />
-          <Route path="/projects" element={<Projects content={content.projects} />} />
-          <Route path="/roadmap" element={<Roadmap content={content.roadmap} />} />
+          <Route path="/" element={renderContent()} />
+          <Route path="/features" element={renderContent()} />
+          <Route path="/projects" element={renderContent()} />
+          <Route path="/roadmap" element={renderContent()} />
         </Routes>
       </main>
       <footer>
