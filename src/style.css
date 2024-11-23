@@ -1,55 +1,95 @@
+/* General Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Ensure padding and margin don't affect layout */
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  line-height: 1.5; /* Improve readability */
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align logo and title on opposite sides */
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
+}
+
+header img {
+  width: 50px;
+  height: auto; /* Ensure aspect ratio is maintained */
+  margin-right: 20px;
+}
+
+/* Navigation and Button Styles */
+#tabs {
+  margin: 20px;
+}
+
+menu {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #61dafb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+}
+
+/* Button Hover and Active States */
+button:hover {
+  background-color: #4fa3d1; /* Slightly darker shade for hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+button.active {
+  background-color: #21a1f1;
+  font-weight: bold;
+}
+
+/* Tab Content Styles */
+#tab-content {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 20px; /* Add padding to ensure the bullet points align well */
+}
+
+li {
+  margin: 10px 0;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
   header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background-color: #282c34;
-    color: white;
+    flex-direction: column;
+    text-align: center;
   }
-  
-  header img {
-    width: 50px;
-    margin-right: 20px;
-  }
-  
-  #tabs {
-    margin: 20px;
-  }
-  
+
   menu {
-    display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
   }
-  
+
   button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #61dafb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+    width: 100%;
+    font-size: 14px; /* Adjust font size on smaller screens */
   }
-  
-  button.active {
-    background-color: #21a1f1;
-    font-weight: bold;
-  }
-  
-  #tab-content {
-    margin-top: 20px;
-  }
-  
-  ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-  
-  li {
-    margin: 10px 0;
-  }
+}
