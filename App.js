@@ -1,82 +1,100 @@
 import React, { useState } from "react";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./styles.css";
 
-const content = [
-  {
-    title: "Overview",
-    items: [
-      "Welcome to SetPlayWinApp, the platform that brings together FunFart Games, DigitalKnuckles, and LazerPixel Dev.",
-      "Explore games, NFTs, tokens, and community utilities in one place!",
-    ],
-  },
-  {
-    title: "Features",
-    items: [
-      "Interactive Gaming Hub: Play and discover new games, track progress, and compete with others.",
-      "Web3 Integration: Experience blockchain-powered gaming, NFT trading, and token utilities.",
-      "Community-Driven Platform: Connect with enthusiasts, join events, and contribute to projects.",
-    ],
-  },
-  {
-    title: "Projects",
-    items: [
-      "FunFart Games: Quirky and innovative games like SneakyPoot’s Adventures and Toothless Zoo Tycoon.",
-      "DigitalKnuckles: Exclusive NFTs and utilities to enhance your gaming experience.",
-      "LazerPixel Dev: Experimental projects, tutorials, and tools for game developers.",
-    ],
-  },
-  {
-    title: "Roadmap",
-    items: [
-      "Phase 1: Launch the gaming hub and NFT marketplace.",
-      "Phase 2: Introduce token utilities and staking rewards.",
-      "Phase 3: Expand community features and co-op gaming modes.",
-      "Phase 4: Launch the SetPlayWin MemeCoin ecosystem.",
-    ],
-  },
-  {
-    title: "Contact",
-    items: [
-      "Email: support@setplaywinapp.com",
-      "Discord: Join the FunFart Community",
-      "Website: SetPlayWinApp.com",
-    ],
-  },
-];
+// Content data for each page
+const content = {
+  home: "Welcome to SetPlayWin - The hub for FunFart Games, DigitalKnuckles, and LazerPixel.",
+  features: [
+    "Interactive Gaming Hub: Discover and play innovative games.",
+    "Web3 Integration: NFTs, token utilities, and blockchain gaming.",
+    "Community-Driven: Join events and contribute to projects."
+  ],
+  projects: [
+    "FunFart Games: Quirky games like SneakyPoot's Adventures.",
+    "DigitalKnuckles: Exclusive NFTs for gamers.",
+    "LazerPixel Dev: Tools for game developers."
+  ],
+  roadmap: [
+    "Phase 1: Launch gaming hub and NFT marketplace.",
+    "Phase 2: Introduce staking and token utilities.",
+    "Phase 3: Expand co-op gaming and community features.",
+    "Phase 4: Launch the SetPlayWin MemeCoin ecosystem."
+  ]
+};
 
 export default function App() {
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState("home");
 
   return (
-    <div>
+    <Router>
       <header>
-        <img src="react-logo-xs.png" alt="React logo" />
-        <div>
-          <h1>SetPlayWinApp</h1>
-          <p>Your Hub for Games, Web3, and Community</p>
-        </div>
+        <img src="/react-logo-xs.png" alt="React Logo" />
+        <h1>SetPlayWin</h1>
+        <p>The hub for Web3, gaming, and community.</p>
       </header>
-      <div id="tabs">
-        <menu>
-          {content.map((tab, index) => (
-            <button
-              key={index}
-              className={activeTabIndex === index ? "active" : ""}
-              onClick={() => setActiveTabIndex(index)}
-            >
-              {tab.title}
-            </button>
-          ))}
-        </menu>
-        <div id="tab-content">
-          <h2>{content[activeTabIndex].title}</h2>
-          <ul>
-            {content[activeTabIndex].items.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setActiveTab("home")}>Home</Link>
+          </li>
+          <li>
+            <Link to="/features" onClick={() => setActiveTab("features")}>Features</Link>
+          </li>
+          <li>
+            <Link to="/projects" onClick={() => setActiveTab("projects")}>Projects</Link>
+          </li>
+          <li>
+            <Link to="/roadmap" onClick={() => setActiveTab("roadmap")}>Roadmap</Link>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home content={content.home} />} />
+          <Route path="/features" element={<Features content={content.features} />} />
+          <Route path="/projects" element={<Projects content={content.projects} />} />
+          <Route path="/roadmap" element={<Roadmap content={content.roadmap} />} />
+        </Routes>
+      </main>
+      <footer>
+        <p>&copy; 2024 SetPlayWin. All rights reserved.</p>
+      </footer>
+    </Router>
+  );
+}
+
+// Individual page components
+function Home({ content }) {
+  return <p>{content}</p>;
+}
+
+function Features({ content }) {
+  return (
+    <ul>
+      {content.map((feature, index) => (
+        <li key={index}>{feature}</li>
+      ))}
+    </ul>
+  );
+}
+
+function Projects({ content }) {
+  return (
+    <ul>
+      {content.map((project, index) => (
+        <li key={index}>{project}</li>
+      ))}
+    </ul>
+  );
+}
+
+function Roadmap({ content }) {
+  return (
+    <ul>
+      {content.map((phase, index) => (
+        <li key={index}>{phase}</li>
+      ))}
+    </ul>
   );
 }
